@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Importing csv file
-netflix = pd.read_csv('C:/Users/welcome/Documents/P&S_Lab/Lab_4/netflix_titles.csv')
+netflix = pd.read_csv('netflix_titles.csv')
 #print(netflix.head(5))
 
 
