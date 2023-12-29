@@ -1,5 +1,32 @@
-def productvalues(x,y):
-    z=x*y
-    return z
+import pandas as pd
+import matplotlib.pyplot as plt
 
-print("product is",productvalues(2,6))
+# Importing csv file
+netflix = pd.read_csv('C:/Users/welcome/Documents/P&S_Lab/Lab_4/netflix_titles.csv')
+#print(netflix.head(5))
+
+
+# Grouping the required variables
+summary_rating = (netflix.groupby('rating').size().to_frame('show_id').reset_index())
+#print(summary_rating)
+
+
+# Sorting the dataframe by the column 'show_id'
+summary_rating = summary_rating.sort_values(by=['show_id'])
+
+
+plt.figure(figsize=(20,7))
+plot=plt.bar(summary_rating['rating'],summary_rating['show_id'] ,width=0.6,color=['r','g','k','b','m','y','orange'])
+
+# Add the data value on head of the bar
+for value in plot:
+    h = value.get_height()
+    w = value.get_width()
+    X = value.get_x()
+    plt.text(X, 1.02*h, int(h))
+
+plt.xlabel('rating')
+plt.xticks(rotation=90)
+plt.ylabel('Counts')
+plt.title('Rating Counts')
+plt.show()
